@@ -1,4 +1,5 @@
 import argparse
+from unittest import result
 from calcli.calculator import Calculator
 
 def main():
@@ -7,6 +8,9 @@ def main():
     parser = argparse.ArgumentParser(
         description="A CLI Calculator Tool",
         epilog="Example calcli add 5 10"
+    )
+    parser.add_argument(
+    "--precision", "-p", type=int, default=2, help="Number of decimal places"
     )
 
     subparsers = parser.add_subparsers(title="Operators", dest="operator")
@@ -30,14 +34,18 @@ def main():
     args = parser.parse_args()
 
     if args.operator == "add":
-        print(f"Result: {calculator._add(args.a, args.b)}")
+        result = round(calculator.add(args.a, args.b), args.precision)
+        print(f"Result: {result}")
     elif args.operator == "sub":
-        print(f"Result: {calculator._sub(args.a, args.b)}")
+        result = round(calculator.sub(args.a, args.b), args.precision)
+        print(f"Result: {result}")
     elif args.operator == "mul":
-        print(f"Result: {calculator._mul(args.a, args.b)}")
+        result = round(calculator.mul(args.a, args.b), args.precision)
+        print(f"Result: {result}")
     elif args.operator == "div":
         try:
-            print(f"Result: {calculator._div(args.a, args.b)}")
+            result = round(calculator.div(args.a, args.b), args.precision)
+            print(f"Result: {result}")
         except ValueError as e:
             print(f"Error: {e}")
     else:

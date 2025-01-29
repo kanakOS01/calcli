@@ -2,16 +2,12 @@ import argparse
 from unittest import result
 from calcli.calculator import Calculator
 
+
 def main():
     calculator = Calculator()
 
-    parser = argparse.ArgumentParser(
-        description="A CLI Calculator Tool",
-        epilog="Example calcli add 5 10"
-    )
-    parser.add_argument(
-    "--precision", "-p", type=int, default=2, help="Number of decimal places"
-    )
+    parser = argparse.ArgumentParser(description="A CLI Calculator Tool", epilog="Example calcli add 5 10")
+    parser.add_argument("--precision", "-p", type=int, default=2, help="Number of decimal places")
 
     subparsers = parser.add_subparsers(title="Operators", dest="operator")
 
@@ -50,6 +46,7 @@ def main():
             print(f"Error: {e}")
     else:
         parser.print_help()
+
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,4 @@
 import argparse
-from unittest import result
 from calcli.calculator import Calculator
 
 
